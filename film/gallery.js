@@ -2,7 +2,38 @@
   const photos = window.FILM_GALLERY || [];
   const pageSize = 12;
   const grid = document.getElementById("gallery-grid");
-  const cards = [...grid.querySelectorAll(".frame")];
+  const cards = photos.map((photo, index) => {
+    const card = document.createElement("figure");
+    card.className = "frame";
+    card.dataset.roll = photo.roll;
+    card.dataset.id = photo.id;
+
+    const link = document.createElement("a");
+    link.className = "frame-link";
+    link.href = photo.full;
+    link.setAttribute("aria-label", `查看胶片卷 ${photo.roll}，第 ${photo.frame} 张`);
+    const mat = document.createElement("span");
+    mat.className = "frame-mat";
+    const image = document.createElement("img");
+    image.src = photo.thumb;
+    image.alt = `胶片卷 ${photo.roll}，第 ${photo.frame} 张`;
+    image.width = 490;
+    image.height = 650;
+    image.loading = "lazy";
+    image.decoding = "async";
+    mat.append(image);
+    link.append(mat);
+
+    const caption = document.createElement("figcaption");
+    const name = document.createElement("span");
+    name.textContent = `${photo.roll} / ${photo.frame}`;
+    const number = document.createElement("span");
+    number.textContent = String(index + 1).padStart(3, "0");
+    caption.append(name, number);
+    card.append(link, caption);
+    grid.append(card);
+    return card;
+  });
   const filter = document.getElementById("roll-filter");
   const previousPage = document.getElementById("previous-page");
   const nextPage = document.getElementById("next-page");
@@ -16,12 +47,16 @@
   const rollCounts = new Map();
   for (const photo of photos) rollCounts.set(photo.roll, (rollCounts.get(photo.roll) || 0) + 1);
   const rolls = [...rollCounts.keys()].sort((a, b) => a.localeCompare(b, "zh-CN", { numeric: true }));
+  document.getElementById("roll-count").textContent = String(rolls.length);
+  document.getElementById("photo-count").textContent = String(photos.length);
   let activeRoll = "all";
   let activePage = 1;
   let activePhoto = null;
   let syncing = false;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   function currentList() { return activeRoll === "all" ? photos : photos.filter(photo => photo.roll === activeRoll); }
+  function scrollToGallery() { document.getElementById("gallery").scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth" }); }
   function address(photoId = null) {
     const url = new URL(window.location.href);
     if (activeRoll === "all") url.searchParams.delete("roll"); else url.searchParams.set("roll", activeRoll);
@@ -30,20 +65,25 @@
     return url;
   }
   function renderFilters() {
-    filter.replaceChildren();
-    for (const [roll, count] of [["all", photos.length], ...rolls.map(roll => [roll, rollCounts.get(roll)])]) {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.dataset.roll = roll;
-      button.setAttribute("aria-pressed", String(activeRoll === roll));
-      button.innerHTML = `<span>${roll === "all" ? "全部胶片" : `卷 ${roll}`}</span><small>${count}</small>`;
-      button.addEventListener("click", () => {
-        activeRoll = roll; activePage = 1;
-        history.pushState(null, "", address());
-        render(); document.getElementById("gallery").scrollIntoView({ behavior: "smooth" });
-      });
-      filter.append(button);
+    if (!filter.childElementCount) {
+      for (const [roll, count] of [["all", photos.length], ...rolls.map(roll => [roll, rollCounts.get(roll)])]) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.dataset.roll = roll;
+        const label = document.createElement("span");
+        label.textContent = roll === "all" ? "全部胶片" : `卷 ${roll}`;
+        const total = document.createElement("small");
+        total.textContent = String(count);
+        button.append(label, total);
+        button.addEventListener("click", () => {
+          activeRoll = roll; activePage = 1;
+          history.pushState(null, "", address());
+          render(); scrollToGallery();
+        });
+        filter.append(button);
+      }
     }
+    for (const button of filter.querySelectorAll("button")) button.setAttribute("aria-pressed", String(activeRoll === button.dataset.roll));
   }
   function render() {
     const list = currentList();
@@ -55,6 +95,7 @@
     previousPage.disabled = activePage <= 1;
     nextPage.disabled = activePage >= pages;
     renderFilters();
+    document.getElementById("gallery-empty").hidden = photos.length > 0;
   }
   function showPhoto(id, push = true) {
     const list = currentList();
@@ -99,8 +140,8 @@
     event.preventDefault();
     showPhoto(anchor.closest(".frame").dataset.id);
   });
-  previousPage.addEventListener("click", () => { activePage--; history.pushState(null, "", address()); render(); document.getElementById("gallery").scrollIntoView({ behavior: "smooth" }); });
-  nextPage.addEventListener("click", () => { activePage++; history.pushState(null, "", address()); render(); document.getElementById("gallery").scrollIntoView({ behavior: "smooth" }); });
+  previousPage.addEventListener("click", () => { activePage--; history.pushState(null, "", address()); render(); scrollToGallery(); });
+  nextPage.addEventListener("click", () => { activePage++; history.pushState(null, "", address()); render(); scrollToGallery(); });
   previousPhoto.addEventListener("click", () => movePhoto(-1));
   nextPhoto.addEventListener("click", () => movePhoto(1));
   document.getElementById("close-lightbox").addEventListener("click", closePhoto);
