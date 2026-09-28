@@ -67,6 +67,10 @@ img { max-width: 100%; }
 }
 .journal-nav a:hover, .journal-nav a[aria-current="page"] { color: var(--journal-ink); }
 .journal-nav a[aria-current="page"] { border-bottom-color: var(--journal-accent); }
+.language-switcher { display: inline-flex; flex: none; align-items: center; gap: 2px; padding: 3px; border: 1px solid var(--journal-line); border-radius: 999px; }
+.language-switcher a { display: grid; place-items: center; min-width: 34px; min-height: 30px; padding: 0 7px; border-radius: 999px; color: var(--journal-muted); font: 600 11px var(--journal-sans); text-decoration: none; }
+.language-switcher a:hover { color: var(--journal-ink); }
+.language-switcher a[aria-current="true"] { background: var(--journal-ink); color: #fff; }
 
 .journal-page, .annual-story, .film-page {
   background: var(--journal-bg);
@@ -187,7 +191,7 @@ img { max-width: 100%; }
 .journal-footer { display: flex; justify-content: space-between; gap: 24px; width: min(100% - 64px, 1236px); margin: 0 auto; padding: 28px 0 42px; border-top: 1px solid var(--journal-line); color: var(--journal-muted); font: 13px var(--journal-sans); }
 .journal-footer a { color: var(--journal-ink); text-decoration: none; }
 
-/* The 2025 story keeps its original text and media while sharing the new site shell. */
+/* Annual stories share the site shell across all languages. */
 .annual-story { --canvas: var(--journal-bg); --paper: var(--journal-paper); --ink: var(--journal-ink); --body: var(--journal-body); --muted: var(--journal-muted); --line: var(--journal-line); }
 .annual-article .breadcrumb { display: flex; gap: 10px; padding: 28px 32px 0; color: var(--journal-muted); font-size: 13px; }
 .annual-article .breadcrumb a { color: var(--journal-ink); }
@@ -224,10 +228,11 @@ img { max-width: 100%; }
   .year-entry { grid-template-columns: 100px minmax(180px, .8fr) minmax(0, 1fr); gap: 24px; }
 }
 @media (max-width: 680px) {
-  .journal-header { min-height: 64px; padding: 0 18px; }
+  .journal-header { display: grid; grid-template-columns: 1fr auto; gap: 0 12px; min-height: 94px; padding: 10px 18px 0; }
   .journal-brand { font-size: 25px; }
-  .journal-nav { gap: 18px; }
-  .journal-nav a { min-height: 46px; font-size: 13px; }
+  .journal-nav { grid-column: 1 / -1; grid-row: 2; gap: 22px; }
+  .journal-nav a { min-height: 42px; font-size: 13px; }
+  .language-switcher { grid-column: 2; grid-row: 1; }
   .journal-page main { width: min(100% - 36px, 1236px); }
   .home-hero { grid-template-columns: 1fr; gap: 38px; padding: 62px 0 80px; }
   .home-hero-copy { padding: 0; }
@@ -254,6 +259,7 @@ img { max-width: 100%; }
   .journal-footer { width: min(100% - 36px, 1236px); flex-direction: column; gap: 8px; padding: 24px 0 34px; }
   .annual-article .breadcrumb { padding: 22px 20px 0; }
   .annual-article .hero { padding-top: 48px; }
+  .annual-article .article-section, .film-page .archive { scroll-margin-top: 112px; }
   .annual-article .hero-board { grid-template-columns: 1fr 1fr; }
   .film-page .hero { padding-top: 56px; }
 }

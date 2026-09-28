@@ -1,5 +1,16 @@
 (() => {
   const photos = window.FILM_GALLERY || [];
+  const language = document.documentElement.lang;
+  const words = {
+    'zh-CN': { view: (roll, frame) => `查看胶片卷 ${roll}，第 ${frame} 张`, photo: (roll, frame) => `胶片卷 ${roll}，第 ${frame} 张`, all: '全部胶片', roll: roll => `卷 ${roll}`, caption: (roll, frame) => `胶片卷 ${roll} · 第 ${frame} 张` },
+    en: { view: (roll, frame) => `View roll ${roll}, frame ${frame}`, photo: (roll, frame) => `Film roll ${roll}, frame ${frame}`, all: 'All rolls', roll: roll => `Roll ${roll}`, caption: (roll, frame) => `ROLL ${roll} · FRAME ${frame}` },
+    id: { view: (roll, frame) => `Lihat rol ${roll}, bingkai ${frame}`, photo: (roll, frame) => `Rol film ${roll}, bingkai ${frame}`, all: 'Semua rol', roll: roll => `Rol ${roll}`, caption: (roll, frame) => `ROL ${roll} · BINGKAI ${frame}` },
+  }[language] || null;
+  const copy = words || {
+    view: (roll, frame) => `View roll ${roll}, frame ${frame}`, photo: (roll, frame) => `Film roll ${roll}, frame ${frame}`,
+    all: 'All rolls', roll: roll => `Roll ${roll}`, caption: (roll, frame) => `ROLL ${roll} · FRAME ${frame}`,
+  };
+  const imagePath = value => value.startsWith('/') ? value : `/film/${value}`;
   const pageSize = 12;
   const grid = document.getElementById("gallery-grid");
   const existingCards = [...grid.querySelectorAll(".frame")];
@@ -13,13 +24,13 @@
 
     const link = document.createElement("a");
     link.className = "frame-link";
-    link.href = photo.full;
-    link.setAttribute("aria-label", `查看胶片卷 ${photo.roll}，第 ${photo.frame} 张`);
+    link.href = imagePath(photo.full);
+    link.setAttribute("aria-label", copy.view(photo.roll, photo.frame));
     const mat = document.createElement("span");
     mat.className = "frame-mat";
     const image = document.createElement("img");
-    image.src = photo.thumb;
-    image.alt = `胶片卷 ${photo.roll}，第 ${photo.frame} 张`;
+    image.src = imagePath(photo.thumb);
+    image.alt = copy.photo(photo.roll, photo.frame);
     image.width = 490;
     image.height = 650;
     image.loading = index < pageSize ? "eager" : "lazy";
@@ -74,7 +85,7 @@
         button.type = "button";
         button.dataset.roll = roll;
         const label = document.createElement("span");
-        label.textContent = roll === "all" ? "全部胶片" : `卷 ${roll}`;
+        label.textContent = roll === "all" ? copy.all : copy.roll(roll);
         const total = document.createElement("small");
         total.textContent = String(count);
         button.append(label, total);
@@ -109,10 +120,10 @@
     if (index < 0) return;
     const photo = list[index];
     activePhoto = id;
-    viewerImage.src = photo.full;
-    viewerImage.alt = `胶片卷 ${photo.roll}，第 ${photo.frame} 张`;
+    viewerImage.src = imagePath(photo.full);
+    viewerImage.alt = copy.photo(photo.roll, photo.frame);
     viewerCount.textContent = `${String(index + 1).padStart(2, "0")} / ${String(list.length).padStart(2, "0")}`;
-    viewerCaption.textContent = `ROLL ${photo.roll} · FRAME ${photo.frame}`;
+    viewerCaption.textContent = copy.caption(photo.roll, photo.frame);
     previousPhoto.disabled = index === 0;
     nextPhoto.disabled = index === list.length - 1;
     if (!dialog.open) dialog.showModal();

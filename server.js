@@ -32,10 +32,6 @@ http.createServer((request, response) => {
     response.writeHead(400).end();
     return;
   }
-  if (pathname === '/film') {
-    response.writeHead(308, { Location: '/film/' }).end();
-    return;
-  }
   if (pathname.split('/').some(segment => segment.startsWith('.'))) {
     response.writeHead(404).end();
     return;
@@ -48,7 +44,14 @@ http.createServer((request, response) => {
   let file = requested;
   let stat;
   try {
-    if (fs.statSync(file).isDirectory()) file = path.join(file, 'index.html');
+    if (fs.statSync(file).isDirectory()) {
+      if (!pathname.endsWith('/')) {
+        const url = new URL(request.url, 'http://localhost');
+        response.writeHead(308, { Location: `${url.pathname}/${url.search}` }).end();
+        return;
+      }
+      file = path.join(file, 'index.html');
+    }
     stat = fs.statSync(file);
     if (!stat.isFile()) throw new Error('Missing file');
   } catch {

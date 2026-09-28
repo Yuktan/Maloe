@@ -29,10 +29,28 @@ for (const photo of photos) {
   }
 }
 
-const page = fs.readFileSync(path.join(root, 'film/index.html'), 'utf8');
-const pageIds = [...page.matchAll(/<figure class="frame"[^>]*data-id="([^"]+)"/g)].map(match => match[1]);
-if (pageIds.length !== photos.length || pageIds.some((id, index) => id !== photos[index].id)) {
-  throw new Error('影集页面与胶片清单不一致；请运行 npm run sync:film');
+for (const [locale, prefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
+  for (const route of ['/', '/annual/', '/annual/2025/', '/film/']) {
+    const relative = `${prefix}${route}index.html`.replace(/^\//, '');
+    const page = fs.readFileSync(path.join(root, relative), 'utf8');
+    if (!page.includes(`<html lang="${locale}">`)) throw new Error(`${relative} 的语言标记不匹配`);
+    if (!page.includes(`rel="canonical" href="https://maloe.xyz${prefix}${route}"`)) {
+      throw new Error(`${relative} 的 canonical 链接不匹配`);
+    }
+    for (const [language, targetPrefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
+      if (!page.includes(`hreflang="${language}" href="https://maloe.xyz${targetPrefix}${route}"`)) {
+        throw new Error(`${relative} 缺少 ${language} 语言链接`);
+      }
+    }
+    if (route !== '/film/') continue;
+    const pageIds = [...page.matchAll(/<figure class="frame"[^>]*data-id="([^"]+)"/g)].map(match => match[1]);
+    if (pageIds.length !== photos.length || pageIds.some((id, index) => id !== photos[index].id)) {
+      throw new Error(`${relative} 与胶片清单不一致；请运行 npm run sync:film`);
+    }
+    if (!page.includes('href="/film/assets/full/') || !page.includes('src="/film/assets/thumb/')) {
+      throw new Error(`${relative} 的照片链接不是共享绝对路径`);
+    }
+  }
 }
 
 console.log(`胶片内容检查通过：${photos.length} 张照片，${new Set(photos.map(photo => photo.roll)).size} 卷胶片`);
