@@ -1,0 +1,28 @@
+name: Publish YudanWeb
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: yudanweb-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Railway CLI
+        run: npm install --global @railway/cli
+      - name: Publish to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: railway up --ci --project efb07cd1-4a51-456d-bf97-4d4460ed9feb --environment dac9df47-0d4d-4afc-b420-14e3391cb6b8 --service 5a54e453-f5e3-462f-948f-b6ecc34aad50

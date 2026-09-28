@@ -9,3 +9,5 @@ npm start
 ```
 
 服务使用 `PORT` 环境变量，未设置时监听 3000 端口。`film/assets/` 中是供网页使用的缩略图和大图，不包含原始扫描文件。
+
+推送到 `main` 分支后，GitHub Actions 会自动发布到 Railway 的 YudanWeb 生产环境；也可以在 Actions 页面手动运行 `Publish YudanWeb`。
