@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Check site code
+        run: npm run check
       - name: Install Railway CLI
         run: npm install --global @railway/cli
       - name: Publish to Railway

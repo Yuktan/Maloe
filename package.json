@@ -3,7 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "scripts": {
-    "start": "node server.js"
+    "dev": "node server.js",
+    "start": "node server.js",
+    "check": "node --check server.js && node --check app.js && node --check film/gallery-data.js && node --check film/gallery.js"
   },
   "engines": {
     "node": ">=18"
