@@ -59,7 +59,7 @@ http.createServer((request, response) => {
   const cacheableMedia = ['.mp4', '.mov', '.webm', '.vtt'].includes(extension);
   const headers = {
     'Content-Type': types[extension] || 'application/octet-stream',
-    'Cache-Control': file.includes(path.sep + 'assets' + path.sep) || cacheableMedia ? 'public, max-age=3600' : 'no-cache',
+    'Cache-Control': file.includes(path.sep + 'assets' + path.sep) || cacheableMedia ? 'public, max-age=3600' : 'no-store',
     'Accept-Ranges': 'bytes',
     'X-Content-Type-Options': 'nosniff',
   };

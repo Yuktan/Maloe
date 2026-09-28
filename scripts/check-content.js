@@ -29,4 +29,10 @@ for (const photo of photos) {
   }
 }
 
+const page = fs.readFileSync(path.join(root, 'film/index.html'), 'utf8');
+const pageIds = [...page.matchAll(/<figure class="frame"[^>]*data-id="([^"]+)"/g)].map(match => match[1]);
+if (pageIds.length !== photos.length || pageIds.some((id, index) => id !== photos[index].id)) {
+  throw new Error('影集页面与胶片清单不一致；请运行 npm run sync:film');
+}
+
 console.log(`胶片内容检查通过：${photos.length} 张照片，${new Set(photos.map(photo => photo.roll)).size} 卷胶片`);

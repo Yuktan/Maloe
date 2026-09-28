@@ -14,7 +14,7 @@
 ## 更新内容
 
 - **新增年度盘点：**在 `annual/年份/` 下建立页面。文章可以使用普通 HTML 的 `<figure>`、`<img>` 和带 `controls` 的 `<video>` 来放文字、照片与视频，再在首页和 `annual/index.html` 加入入口。媒体文件放在 `assets/` 或该年度目录下；视频建议用 MP4，并为有对白的视频提供字幕文件。
-- **新增胶片照片：**将网页尺寸的大图与缩略图分别放到 `film/assets/full/胶片卷/` 和 `film/assets/thumb/胶片卷/`，然后在 `film/gallery-data.js` 追加一条同格式记录。照片数量、卷数、筛选项和分页会自动更新。仓库不存原始扫描文件。
+- **新增胶片照片：**将网页尺寸的大图与缩略图分别放到 `film/assets/full/胶片卷/` 和 `film/assets/thumb/胶片卷/`，在 `film/gallery-data.js` 追加同格式记录，再运行 `npm run sync:film` 生成可直接显示的照片页面。照片数量、卷数、筛选项和分页会自动更新。仓库不存原始扫描文件。
 
 运行需要 Node.js 18 或更新版本：
 

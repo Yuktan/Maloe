@@ -2,7 +2,10 @@
   const photos = window.FILM_GALLERY || [];
   const pageSize = 12;
   const grid = document.getElementById("gallery-grid");
-  const cards = photos.map((photo, index) => {
+  const existingCards = [...grid.querySelectorAll(".frame")];
+  const useStaticCards = existingCards.length === photos.length && existingCards.every((card, index) => card.dataset.id === photos[index].id);
+  if (!useStaticCards) grid.replaceChildren();
+  const cards = useStaticCards ? existingCards : photos.map((photo, index) => {
     const card = document.createElement("figure");
     card.className = "frame";
     card.dataset.roll = photo.roll;
@@ -19,7 +22,7 @@
     image.alt = `胶片卷 ${photo.roll}，第 ${photo.frame} 张`;
     image.width = 490;
     image.height = 650;
-    image.loading = "lazy";
+    image.loading = index < pageSize ? "eager" : "lazy";
     image.decoding = "async";
     mat.append(image);
     link.append(mat);
@@ -90,7 +93,10 @@
     const pages = Math.max(1, Math.ceil(list.length / pageSize));
     activePage = Math.min(Math.max(activePage, 1), pages);
     const visible = new Set(list.slice((activePage - 1) * pageSize, activePage * pageSize).map(photo => photo.id));
-    for (const card of cards) card.hidden = !visible.has(card.dataset.id);
+    for (const card of cards) {
+      card.hidden = !visible.has(card.dataset.id);
+      if (!card.hidden) card.querySelector("img").loading = "eager";
+    }
     pageStatus.textContent = `${String(activePage).padStart(2, "0")} / ${String(pages).padStart(2, "0")}`;
     previousPage.disabled = activePage <= 1;
     nextPage.disabled = activePage >= pages;
