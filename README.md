@@ -1,6 +1,6 @@
-# Maloe
+# 陆肆捌 / Maloe.
 
-[maloe.xyz](https://maloe.xyz) 的统一仓库。网站以个人博客为入口，现有两条内容线：每年的年度盘点，以及随时更新的胶片影集。
+[maloe.xyz](https://maloe.xyz) 的统一仓库。博客中文名为「陆肆捌」，英文名与公开网络署名为「Maloe.」，网站内容不使用真实姓名。现有两条内容线：每年的年度盘点，以及随时更新的胶片影集。
 
 | 地址 | 内容 | 对应文件 |
 | --- | --- | --- |
@@ -11,7 +11,7 @@
 
 中文是默认语言；同一组页面也有 `/en/` 和 `/id/` 前缀，分别对应英语和印尼语。例如 `/en/annual/2025/` 与 `/id/film/`。每页的语言切换会保留当前文章章节或影集的筛选、页码和照片。各语言页面有独立标题、说明、正文与搜索引擎语言标记，照片文件由三个版本共用。
 
-原 [s0s0/YudanWeb](https://github.com/s0s0/YudanWeb) 的 2025 全文、脚本、样式和 `assets/` 已保留在本仓库；以后只在这里修改和发布。旧首页的章节书签会转到 `/annual/2025/`。
+原网站的 2025 全文、脚本、样式和 `assets/` 已保留在本仓库；以后只在这里修改和发布。旧首页的章节书签会转到 `/annual/2025/`。
 
 ## 更新内容
 
@@ -27,4 +27,4 @@ npm run dev
 
 `npm run check` 检查脚本语法、照片编号和文件是否齐全。服务使用 `PORT` 环境变量，未设置时监听 3000 端口。
 
-推送到 `main` 后，GitHub Actions 先检查代码，再自动发布到 Railway 的 YudanWeb 生产环境；也可以在 Actions 页面手动运行 `Publish YudanWeb`。设计方向和页面规范见 [DESIGN.md](DESIGN.md)。
+推送到 `main` 后，GitHub Actions 先检查代码，再自动发布到 Railway 的生产环境；也可以在 Actions 页面手动运行 `Publish Maloe`。设计方向和页面规范见 [DESIGN.md](DESIGN.md)。

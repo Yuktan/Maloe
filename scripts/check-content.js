@@ -34,6 +34,12 @@ for (const [locale, prefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
     const relative = `${prefix}${route}index.html`.replace(/^\//, '');
     const page = fs.readFileSync(path.join(root, relative), 'utf8');
     if (!page.includes(`<html lang="${locale}">`)) throw new Error(`${relative} 的语言标记不匹配`);
+    if (/Yudan|鱼蛋/i.test(page)) throw new Error(`${relative} 包含不应公开的个人署名`);
+    const brand = locale === 'zh-CN' ? '陆肆捌' : 'Maloe';
+    if (!new RegExp(`<a class="journal-brand"[^>]*>${brand}`).test(page)) {
+      throw new Error(`${relative} 的博客名称不匹配`);
+    }
+    if (page.includes('social-preview.png')) throw new Error(`${relative} 仍引用旧分享图`);
     if (!page.includes(`rel="canonical" href="https://maloe.xyz${prefix}${route}"`)) {
       throw new Error(`${relative} 的 canonical 链接不匹配`);
     }
