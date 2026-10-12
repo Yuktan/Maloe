@@ -1,0 +1,54 @@
+.archive-story-page { min-height: 100vh; }
+.archive-story-main { padding-bottom: 100px; }
+.archive-breadcrumb { display: flex; gap: 10px; align-items: center; padding: 30px 0 0; color: var(--journal-muted); font-size: 13px; }
+.archive-breadcrumb a { color: var(--journal-ink); text-decoration: none; }
+.archive-breadcrumb a:hover { color: var(--journal-accent); }
+.archive-story-hero { max-width: 960px; padding: clamp(62px, 8vw, 124px) 0 72px; border-bottom: 1px solid var(--journal-line); }
+.archive-story-hero .journal-kicker { margin-bottom: 22px; }
+.archive-story-hero h1 { margin: 0; color: var(--journal-ink); font: 500 clamp(54px, 7vw, 100px)/1.12 var(--journal-serif); letter-spacing: -.065em; text-wrap: balance; }
+.archive-dek { max-width: 44em; margin: 30px 0 28px; color: var(--journal-body); font: 400 clamp(18px, 1.8vw, 23px)/1.75 var(--journal-serif); }
+.archive-byline { margin: 0; color: var(--journal-muted); font-size: 12px; letter-spacing: .04em; }
+.archive-byline span { padding: 0 7px; }
+.archive-story-layout { display: grid; grid-template-columns: minmax(160px, 230px) minmax(0, 760px); gap: clamp(48px, 8vw, 126px); padding-top: 62px; }
+.archive-toc { align-self: start; position: sticky; top: 118px; padding-top: 2px; border-top: 1px solid var(--journal-line); }
+.archive-toc > p { margin: 15px 0 20px; color: var(--journal-muted); font-size: 12px; letter-spacing: .08em; }
+.archive-toc nav { display: grid; gap: 14px; }
+.archive-toc a { color: var(--journal-body); font-size: 13px; line-height: 1.6; text-decoration: none; }
+.archive-toc a:hover { color: var(--journal-accent); }
+.archive-prose { min-width: 0; color: var(--journal-body); }
+.archive-story-section { padding-bottom: 56px; scroll-margin-top: 108px; }
+.archive-story-section + .archive-story-section { padding-top: 58px; border-top: 1px solid var(--journal-line); }
+.archive-section-index { margin: 0 0 10px; color: var(--journal-accent); font: 500 12px var(--journal-sans); letter-spacing: .08em; }
+.archive-prose h2 { margin: 0 0 28px; color: var(--journal-ink); font: 500 clamp(29px, 3vw, 42px)/1.32 var(--journal-serif); letter-spacing: -.045em; }
+.archive-prose p, .archive-prose li { font-size: 17px; line-height: 1.95; }
+.archive-prose p { margin: 0 0 26px; }
+.archive-prose ul, .archive-prose ol { margin: 0 0 30px; padding-left: 1.45em; }
+.archive-prose li + li { margin-top: 12px; }
+.archive-prose li::marker { color: var(--journal-accent); }
+.archive-prose blockquote { margin: 32px 0; padding: 10px 0 10px 25px; border-left: 2px solid var(--journal-accent); color: var(--journal-ink); font-family: var(--journal-serif); }
+.archive-prose blockquote p { margin: 0; font-size: 18px; line-height: 1.9; }
+.archive-prose figure { margin: 36px 0 42px; }
+.archive-figure-link { display: block; width: fit-content; max-width: 100%; }
+.archive-prose figure img { display: block; width: auto; max-width: 100%; max-height: 76vh; height: auto; object-fit: contain; background: var(--journal-paper); }
+.archive-prose figure figcaption { max-width: 65ch; margin-top: 10px; color: var(--journal-muted); font-size: 12px; line-height: 1.6; }
+.article-resources { list-style: none; padding-left: 0 !important; }
+.article-resources li { padding: 9px 0; border-bottom: 1px solid var(--journal-line); }
+.archive-back { display: inline-flex; margin: 30px 0 0; padding-bottom: 5px; border-bottom: 1px solid var(--journal-ink); color: var(--journal-ink); font-size: 14px; font-weight: 600; text-decoration: none; }
+.archive-back:hover { color: var(--journal-accent); border-color: var(--journal-accent); }
+@media (max-width: 820px) {
+  .archive-story-layout { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-top: 42px; }
+  .archive-toc { position: static; min-width: 0; }
+  .archive-toc nav { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 12px; }
+  .archive-toc a { flex: none; padding: 7px 12px; border: 1px solid var(--journal-line); border-radius: 99px; background: var(--journal-paper); }
+}
+@media (max-width: 680px) {
+  .archive-story-main { padding-bottom: 65px; }
+  .archive-breadcrumb { padding-top: 22px; }
+  .archive-story-hero { padding: 58px 0 46px; }
+  .archive-story-hero h1 { font-size: clamp(48px, 11.5vw, 68px); }
+  .archive-dek { margin: 22px 0; font-size: 17px; }
+  .archive-story-section { padding-bottom: 40px; scroll-margin-top: 120px; }
+  .archive-story-section + .archive-story-section { padding-top: 40px; }
+  .archive-prose p, .archive-prose li { font-size: 16px; line-height: 1.85; }
+  .archive-prose blockquote p { font-size: 17px; }
+}
