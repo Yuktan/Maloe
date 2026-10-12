@@ -9,17 +9,17 @@ const entries = [
 ];
 const locales = {
   zh: {
-    code: 'zh-CN', prefix: '', brand: '陆肆捌', home: '陆肆捌首页', nav: '网站导航', annual: '年度盘点', film: '胶片影集',
+    code: 'zh-CN', prefix: '', brand: '陆肆捌', home: '陆肆捌首页', nav: '网站导航', annual: '年度盘点', film: '胶片影集', products: '我的产品',
     skip: '跳到正文', breadcrumb: '当前位置', contents: '目录', back: '返回年度盘点', read: '读这一年', years: '历年盘点', footer: '陆肆捌 · 年度盘点',
     year2025: '2025 年终总结', summary2025: '从健康、连结、改变与突破四个词出发，整理这一年的收获、失去与重新出发。',
   },
   en: {
-    code: 'en', prefix: '/en', brand: 'Maloe.', home: 'Maloe. home', nav: 'Site navigation', annual: 'Annual Reviews', film: 'Film Archive',
+    code: 'en', prefix: '/en', brand: 'Maloe.', home: 'Maloe. home', nav: 'Site navigation', annual: 'Annual Reviews', film: 'Film Archive', products: 'Products',
     skip: 'Skip to content', breadcrumb: 'Breadcrumb', contents: 'Contents', back: 'All annual reviews', read: 'Read this year', years: 'Reviews by year', footer: 'Maloe. · Annual Reviews',
     year2025: '2025 Annual Review', summary2025: 'Health, connection, change and breaking through frame a year of gains, losses and fresh starts.',
   },
   id: {
-    code: 'id', prefix: '/id', brand: 'Maloe.', home: 'Beranda Maloe.', nav: 'Navigasi situs', annual: 'Catatan Tahunan', film: 'Arsip Film',
+    code: 'id', prefix: '/id', brand: 'Maloe.', home: 'Beranda Maloe.', nav: 'Navigasi situs', annual: 'Catatan Tahunan', film: 'Arsip Film', products: 'Produk',
     skip: 'Lewati ke konten', breadcrumb: 'Navigasi halaman', contents: 'Daftar isi', back: 'Semua catatan tahunan', read: 'Baca kisah ini', years: 'Catatan menurut tahun', footer: 'Maloe. · Catatan Tahunan',
     year2025: 'Catatan Tahunan 2025', summary2025: 'Kesehatan, hubungan, perubahan, dan terobosan membingkai kisah tentang pencapaian, kehilangan, dan awal yang baru.',
   },
@@ -81,7 +81,7 @@ function storyHtml(entry, key) {
   <link rel="canonical" href="https://maloe.xyz${localizedRoute}">
   ${alternates}
   <link rel="alternate" hreflang="x-default" href="https://maloe.xyz${route}">
-  <link rel="stylesheet" href="/site.css?v=3">
+  <link rel="stylesheet" href="/site.css?v=4">
   <link rel="stylesheet" href="/annual/archive.css?v=1">
   <script src="/locale.js" defer></script>
   <title>${title} · ${escape(ui.brand)}</title>
@@ -90,7 +90,7 @@ function storyHtml(entry, key) {
   <a class="skip-link" href="#article-content">${ui.skip}</a>
   <header class="journal-header">
     <a class="journal-brand" href="${ui.prefix}/" aria-label="${ui.home}">${brandHtml}</a>
-    <nav class="journal-nav" aria-label="${ui.nav}"><a href="${ui.prefix}/annual/" aria-current="page">${ui.annual}</a><a href="${ui.prefix}/film/">${ui.film}</a></nav>
+    <nav class="journal-nav" aria-label="${ui.nav}"><a href="${ui.prefix}/annual/" aria-current="page">${ui.annual}</a><a href="${ui.prefix}/film/">${ui.film}</a><a href="${ui.prefix}/products/">${ui.products}</a></nav>
     <nav class="language-switcher" aria-label="语言 / Language / Bahasa">${switcher}</nav>
   </header>
   <main class="archive-story-main" id="article-content">

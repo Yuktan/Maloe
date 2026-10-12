@@ -176,6 +176,15 @@ img { max-width: 100%; }
 .film-preview:hover img:first-child { transform: translateY(-5px); }
 .film-preview-caption { position: absolute; right: 0; bottom: 0; padding: 13px 17px; background: var(--journal-ink); color: #fff; font-size: 14px; font-weight: 600; }
 
+.home-product-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.home-product-grid a { display: flex; flex-direction: column; align-items: start; min-height: 335px; padding: clamp(25px, 3.5vw, 43px); border: 1px solid var(--journal-line); background: var(--journal-paper); transition: transform .2s ease, box-shadow .2s ease; }
+.home-product-grid a:hover { transform: translateY(-4px); box-shadow: 0 18px 32px rgba(32, 51, 55, .08); }
+.home-product-grid img { width: 62px; height: 62px; object-fit: contain; }
+.home-product-grid a > span { margin-top: 24px; color: var(--journal-muted); font-size: 11px; }
+.home-product-grid h3 { margin: 6px 0 8px; color: var(--journal-ink); font: 500 clamp(31px, 3vw, 42px)/1.2 var(--journal-serif); letter-spacing: -.045em; }
+.home-product-grid p { max-width: 26em; margin: 0 0 23px; font-size: 15px; line-height: 1.7; }
+.home-product-grid strong { margin-top: auto; color: var(--journal-ink); font-size: 13px; }
+
 .collection-main { min-height: calc(100vh - 160px); }
 .collection-intro { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(250px, .6fr); gap: 40px; align-items: end; padding: 90px 0 64px; border-bottom: 1px solid var(--journal-line); }
 .collection-intro .journal-kicker { grid-column: 1 / -1; margin: 0 0 -20px; }
@@ -249,6 +258,9 @@ img { max-width: 100%; }
   .film-preview img:nth-child(2) { margin-top: 15px; }
   .film-preview img:nth-child(3) { margin-top: 30px; }
   .film-preview-caption { font-size: 12px; padding: 10px 12px; }
+  .home-product-grid { grid-template-columns: 1fr; }
+  .home-product-grid a { min-height: 280px; padding: 26px; }
+  .home-product-grid a > span { margin-top: 18px; }
   .collection-intro { grid-template-columns: 1fr; gap: 14px; padding: 65px 0 40px; }
   .collection-intro .journal-kicker { grid-column: auto; margin: 0 0 12px; }
   .collection-intro h1 { font-size: clamp(56px, 12vw, 74px); }
@@ -270,5 +282,5 @@ img { max-width: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  .journal-nav a, .primary-link, .featured-year > img, .film-preview img { transition: none; }
+  .journal-nav a, .primary-link, .featured-year > img, .film-preview img, .home-product-grid a { transition: none; }
 }

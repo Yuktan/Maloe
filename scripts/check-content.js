@@ -52,7 +52,7 @@ for (const photo of photos) {
 }
 
 for (const [locale, prefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
-  for (const route of ['/', '/annual/', ...annualYears.map(year => `/annual/${year}/`), '/film/']) {
+  for (const route of ['/', '/annual/', ...annualYears.map(year => `/annual/${year}/`), '/film/', '/products/', '/products/restory/', '/products/filmcut/']) {
     const relative = `${prefix}${route}index.html`.replace(/^\//, '');
     const page = fs.readFileSync(path.join(root, relative), 'utf8');
     if (!page.includes(`<html lang="${locale}">`)) throw new Error(`${relative} 的语言标记不匹配`);
@@ -69,6 +69,20 @@ for (const [locale, prefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
       if (!page.includes(`hreflang="${language}" href="https://maloe.xyz${targetPrefix}${route}"`)) {
         throw new Error(`${relative} 缺少 ${language} 语言链接`);
       }
+    }
+    if (!page.includes(`href="${prefix}/products/"`)) throw new Error(`${relative} 缺少产品导航`);
+    if (route === '/products/') {
+      for (const slug of ['restory', 'filmcut']) {
+        if (!page.includes(`href="${prefix}/products/${slug}/"`)) throw new Error(`${relative} 缺少 ${slug} 产品入口`);
+      }
+    }
+    if (route.startsWith('/products/') && route !== '/products/') {
+      if (!page.includes('src="/products/demo.js?v=1"')) throw new Error(`${relative} 缺少交互演示`);
+      if ((page.match(/data-stage="[012]"/g) || []).length !== 3) throw new Error(`${relative} 演示步骤不完整`);
+      if (!page.includes('交互演示') && locale === 'zh-CN') throw new Error(`${relative} 缺少示例内容说明`);
+    }
+    for (const image of page.matchAll(/<img[^>]+src="(\/assets\/products\/[^\"]+)"/g)) {
+      if (!fs.existsSync(path.join(root, image[1].slice(1)))) throw new Error(`${relative} 产品图片不存在：${image[1]}`);
     }
     if (route === '/annual/') {
       for (const year of annualYears) {
@@ -92,4 +106,4 @@ for (const [locale, prefix] of [['zh-CN', ''], ['en', '/en'], ['id', '/id']]) {
   }
 }
 
-console.log(`内容检查通过：${annualYears.length} 篇三语年度盘点，${photos.length} 张胶片照片，${new Set(photos.map(photo => photo.roll)).size} 卷胶片`);
+console.log(`内容检查通过：${annualYears.length} 篇三语年度盘点、2 款三语产品、${photos.length} 张胶片照片、${new Set(photos.map(photo => photo.roll)).size} 卷胶片`);
