@@ -9,17 +9,17 @@ const entries = [
 ];
 const locales = {
   zh: {
-    code: 'zh-CN', prefix: '', brand: '陆肆捌', home: '陆肆捌首页', nav: '网站导航', annual: '年度盘点', film: '胶片影集', products: '我的产品',
+    code: 'zh-CN', prefix: '', brand: '陆肆捌', home: '陆肆捌首页', nav: '网站导航', annual: '年度盘点', film: '胶片影集', products: '许愿开发',
     skip: '跳到正文', breadcrumb: '当前位置', contents: '目录', back: '返回年度盘点', read: '读这一年', years: '历年盘点', footer: '陆肆捌 · 年度盘点',
     year2025: '2025 年终总结', summary2025: '从健康、连结、改变与突破四个词出发，整理这一年的收获、失去与重新出发。',
   },
   en: {
-    code: 'en', prefix: '/en', brand: 'Maloe.', home: 'Maloe. home', nav: 'Site navigation', annual: 'Annual Reviews', film: 'Film Archive', products: 'Products',
+    code: 'en', prefix: '/en', brand: 'Maloe.', home: 'Maloe. home', nav: 'Site navigation', annual: 'Annual Reviews', film: 'Film Archive', products: 'Vibe Coding',
     skip: 'Skip to content', breadcrumb: 'Breadcrumb', contents: 'Contents', back: 'All annual reviews', read: 'Read this year', years: 'Reviews by year', footer: 'Maloe. · Annual Reviews',
     year2025: '2025 Annual Review', summary2025: 'Health, connection, change and breaking through frame a year of gains, losses and fresh starts.',
   },
   id: {
-    code: 'id', prefix: '/id', brand: 'Maloe.', home: 'Beranda Maloe.', nav: 'Navigasi situs', annual: 'Catatan Tahunan', film: 'Arsip Film', products: 'Produk',
+    code: 'id', prefix: '/id', brand: 'Maloe.', home: 'Beranda Maloe.', nav: 'Navigasi situs', annual: 'Catatan Tahunan', film: 'Arsip Film', products: 'Vibe Coding',
     skip: 'Lewati ke konten', breadcrumb: 'Navigasi halaman', contents: 'Daftar isi', back: 'Semua catatan tahunan', read: 'Baca kisah ini', years: 'Catatan menurut tahun', footer: 'Maloe. · Catatan Tahunan',
     year2025: 'Catatan Tahunan 2025', summary2025: 'Kesehatan, hubungan, perubahan, dan terobosan membingkai kisah tentang pencapaian, kehilangan, dan awal yang baru.',
   },
@@ -81,7 +81,7 @@ function storyHtml(entry, key) {
   <link rel="canonical" href="https://maloe.xyz${localizedRoute}">
   ${alternates}
   <link rel="alternate" hreflang="x-default" href="https://maloe.xyz${route}">
-  <link rel="stylesheet" href="/site.css?v=4">
+  <link rel="stylesheet" href="/site.css?v=5">
   <link rel="stylesheet" href="/annual/archive.css?v=1">
   <script src="/locale.js" defer></script>
   <title>${title} · ${escape(ui.brand)}</title>
@@ -95,7 +95,7 @@ function storyHtml(entry, key) {
   </header>
   <main class="archive-story-main" id="article-content">
     <nav class="archive-breadcrumb" aria-label="${ui.breadcrumb}"><a href="${ui.prefix}/annual/">${ui.annual}</a><span aria-hidden="true">/</span><span>${entry.year}</span></nav>
-    <header class="archive-story-hero"><p class="journal-kicker">${ui.annual} · ${entry.year}</p><h1>${title}</h1><p class="archive-dek">${summary}</p><p class="archive-byline">${escape(ui.brand)} <span aria-hidden="true">·</span> ${entry.year}</p></header>
+    <header class="archive-story-hero"><h1>${title}</h1><p class="archive-dek">${summary}</p></header>
     <div class="archive-story-layout">
       <aside class="archive-toc"><p>${ui.contents}</p><nav aria-label="${ui.contents}">${links}</nav></aside>
       <article class="archive-prose">${sections}</article>
@@ -118,7 +118,7 @@ function yearListHtml(key) {
     return `      <a class="year-entry" href="${ui.prefix}/annual/${entry.year}/" aria-label="${ui.read}: ${title}">
         <span class="year-entry-number">${entry.year}</span>
         <img src="${cover}" alt="${local(entry.coverAlt || { [key]: title }, key)}" loading="lazy">
-        <div class="year-entry-body"><h2>${title}</h2><p>${local(entry.summary, key)}</p><span>${ui.read} <span aria-hidden="true">↗</span></span></div>
+        <div class="year-entry-body"><h2>${title}</h2><p>${local(entry.summary, key)}</p><span aria-hidden="true">↗</span></div>
       </a>`;
   }).join('\n');
 }

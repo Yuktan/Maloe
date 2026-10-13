@@ -1,6 +1,6 @@
 # 陆肆捌 / Maloe.
 
-[maloe.xyz](https://maloe.xyz) 的统一仓库：[Yuktan/Maloe](https://github.com/Yuktan/Maloe)。博客中文名为「陆肆捌」，英文名与公开网络署名为「Maloe.」，网站内容不使用真实姓名。现有三条内容线：每年的年度盘点、随时更新的胶片影集，以及自己做的产品。
+[maloe.xyz](https://maloe.xyz) 的统一仓库：[Yuktan/Maloe](https://github.com/Yuktan/Maloe)。博客中文名为「陆肆捌」，英文名与公开网络署名为「Maloe.」，网站内容不使用真实姓名。现有三栏：年度盘点、胶片影集、许愿开发（英语和印尼语栏目名均为 Vibe Coding）。
 
 | 地址 | 内容 | 对应文件 |
 | --- | --- | --- |
@@ -8,7 +8,7 @@
 | `/annual/` | 年度盘点目录 | `annual/index.html` |
 | `/annual/2021/`、`/annual/2023/`、`/annual/2024/`、`/annual/2025/` | 历年全文 | `annual/年份/index.html` |
 | `/film/` | 可筛选、分页的大图影集 | `film/index.html`、`film/gallery-data.js` |
-| `/products/` | 产品目录 | `products/index.html` |
+| `/products/` | 许愿开发 / Vibe Coding | `products/index.html` |
 | `/products/restory/`、`/products/filmcut/` | 产品介绍与交互演示 | `products/名称/index.html` |
 
 中文是默认语言；同一组页面也有 `/en/` 和 `/id/` 前缀，分别对应英语和印尼语。例如 `/en/annual/2025/` 与 `/id/film/`。每页的语言切换会保留当前文章章节或影集的筛选、页码和照片。各语言页面有独立标题、说明、正文与搜索引擎语言标记，照片文件由三个版本共用。

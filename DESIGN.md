@@ -1,6 +1,6 @@
 # 陆肆捌 / Maloe. 设计方向
 
-陆肆捌是博客的中文名，Maloe. 是英文名和公开网络署名。页面、分享摘要、图片和文档只使用这两个名称，不展示真实姓名。网站让读者在「每年的回望」「随时发生的胶片记录」与「自己做的产品」之间自然移动。首页是入口，不再由某一篇年度文章充当整个网站。
+陆肆捌是博客的中文名，Maloe. 是英文名和公开网络署名。页面、分享摘要、图片和文档只使用这两个名称，不展示真实姓名。三个栏目是年度盘点、胶片影集和许愿开发（英语、印尼语为 Vibe Coding）。
 
 ## 结构
 
@@ -12,7 +12,7 @@
 │  ├─ 2023 /annual/2023/   提前版年终总结，三语全文
 │  └─ 2021 /annual/2021/   旧文归档，三语全文
 ├─ 胶片影集 /film/         持续更新，按胶片卷筛选与分页
-└─ 我的产品 /products/     RE:Story、Filmcut 与后续作品
+└─ 许愿开发 /products/     RE:Story、Filmcut 与后续作品
    ├─ RE:Story /products/restory/  年度影像产品介绍与演示
    └─ Filmcut /products/filmcut/   胶片整理工具介绍与演示
 ```
@@ -22,8 +22,8 @@
 ## 视觉语言
 
 - **颜色：**冷纸色 `#edf1f0`、照片白边 `#fafbf9`、深蓝灰文字 `#203337`、次级文字 `#596b6c`、分隔线 `#cbd4d2`、少量选片红 `#a64d58`。这组颜色取自胶片中的蓝天、纸边与红色标签，避免整站变成通用暖米色模板。
-- **字体：**中文长文与大标题使用 Songti SC / Iowan Old Style 的衬线组合，导航和界面文字使用 PingFang SC / Avenir Next。正文保持宽松行距，避免太长的行宽。
-- **版式：**首页左边是文字，右边只放一张胶片照片；年度目录用年份建立真实顺序；胶片影集保留接触印样的照片矩阵。产品页沿用博客的冷纸色，先说明用途，再让读者看到三步交互演示和真实产品 Logo。三条内容线都通过相同的顶栏进入。
+- **字体：**全站以 Songti SC / Iowan Old Style 作标题衬线组合，以 PingFang SC / Avenir Next 作正文和界面文字。旧页面的等宽标签也统一到这套无衬线字族。正文保持宽松行距与适中的行宽。
+- **版式：**首页左边是文字，右边放一张胶片照片；年度目录以年份排序；胶片影集保留照片矩阵。产品页沿用冷纸色，先展示用途，再呈现三步交互演示与产品 Logo。全站使用同一套字体、颜色、内容宽度和顶栏。
 - **互动：**导航状态清晰，筛选和分页保留在网址中，大图支持键盘。自动出现的装饰动效保持克制；小屏幕仍可完整阅读。
 
 设计时参考 [Anthropic Frontend Design](https://github.com/anthropics/claude-code/blob/main/plugins/frontend-design/skills/frontend-design/SKILL.md) 的内容驱动与明确视觉观点，并用 [Vercel Web Interface Guidelines](https://github.com/vercel-labs/agent-skills/blob/main/skills/web-design-guidelines/SKILL.md) 检查可访问性与交互细节。

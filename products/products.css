@@ -4,7 +4,7 @@
 .products-hub-hero .journal-kicker { grid-column: 1 / -1; margin: 0 0 -18px; }
 .products-hub-hero h1 { margin: 0; color: var(--journal-ink); font: 500 clamp(64px, 8vw, 118px)/1.12 var(--journal-serif); letter-spacing: -.075em; }
 .products-hub-hero > p:last-child { max-width: 33em; margin: 0 0 9px; font-size: 18px; line-height: 1.85; }
-.product-collection { display: grid; gap: 22px; padding: 54px 0 45px; }
+.product-collection { display: grid; gap: 22px; padding: 54px 0 0; }
 .product-card { display: grid; grid-template-columns: minmax(320px, .85fr) minmax(0, 1.15fr); min-height: 405px; overflow: hidden; border: 1px solid var(--journal-line); background: var(--journal-paper); transition: transform .25s ease, box-shadow .25s ease; }
 .product-card:hover { transform: translateY(-4px); box-shadow: 0 22px 46px rgba(32, 51, 55, .09); }
 .product-card-copy { display: flex; flex-direction: column; align-items: start; padding: clamp(30px, 4vw, 58px); }
@@ -29,7 +29,6 @@
 .product-card:hover .product-card-filmstrip { transform: rotate(1deg) translateY(-8px); }
 .product-card-filmstrip img { width: 100%; height: 100%; object-fit: cover; min-width: 0; }
 .product-card-cut { position: absolute; z-index: 1; left: 50%; top: 8%; bottom: 8%; width: 1px; background: rgba(255,255,255,.8); box-shadow: 0 0 0 7px rgba(255,255,255,.22); }
-.products-hub-footer { margin: 0; color: var(--journal-muted); font: 400 18px/1.7 var(--journal-serif); }
 
 .product-breadcrumb { display: flex; align-items: center; gap: 10px; padding-top: 28px; color: var(--journal-muted); font-size: 13px; }
 .product-breadcrumb a { color: var(--journal-ink); }
@@ -126,9 +125,8 @@
 .product-feature-grid article > span { color: var(--journal-accent); font: 500 15px var(--journal-serif); }
 .product-feature-grid h3 { max-width: 12em; margin: 33px 0 16px; color: var(--journal-ink); font: 500 clamp(25px, 2.6vw, 34px)/1.3 var(--journal-serif); letter-spacing: -.035em; }
 .product-feature-grid p { max-width: 31em; margin: 0; font-size: 15px; line-height: 1.85; }
-.product-made-for { margin: 58px 0 0; color: var(--journal-ink); font: 400 clamp(20px, 2.4vw, 28px)/1.6 var(--journal-serif); }
 .product-next { display: flex; justify-content: space-between; align-items: end; gap: 30px; padding: 56px 0; border-bottom: 1px solid var(--journal-line); }
-.product-next span { color: var(--journal-muted); font-size: 12px; }.product-next h2 { margin: 8px 0 7px; color: var(--journal-ink); font: 500 42px var(--journal-serif); }.product-next p { max-width: 35em; margin: 0; font-size: 15px; line-height: 1.75; }
+.product-next span { color: var(--journal-muted); font-size: 12px; }.product-next h2 { margin: 8px 0 7px; color: var(--journal-ink); font: 500 42px var(--journal-serif); }
 .product-next a, .product-back { display: inline-flex; align-items: center; flex: none; gap: 30px; padding-bottom: 5px; border-bottom: 1px solid var(--journal-ink); color: var(--journal-ink); font-size: 14px; font-weight: 600; }.product-next a:hover, .product-back:hover { color: var(--journal-accent); border-color: var(--journal-accent); }
 .product-back { margin-top: 45px; }
 @keyframes product-demo-enter { from { opacity: .28; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -144,10 +142,10 @@
 @media (max-width: 680px) {
   .products-page main { padding-bottom: 66px; }
   .products-hub-hero { grid-template-columns: 1fr; gap: 15px; padding: 70px 0 50px; }.products-hub-hero .journal-kicker { grid-column: auto; margin: 0 0 17px; }.products-hub-hero h1 { font-size: clamp(59px, 12vw, 76px); }.products-hub-hero > p:last-child { font-size: 16px; }
-  .product-collection { gap: 18px; padding: 30px 0; }.product-card { grid-template-columns: 1fr; min-height: 0; }.product-card-copy { min-height: 260px; padding: 27px; }.product-card-copy > p { margin-top: 33px; font-size: 20px; }.product-card-art { height: 265px; padding: 25px; }.product-card-story { width: 150px; border-width: 6px; border-radius: 10px; }.product-card-story-copy { padding: 10px; }.product-card-story-copy span:first-child { font-size: 26px; }.product-card-story-copy span:last-child { font-size: 17px; }.product-card-filmstrip { max-width: 330px; }
+  .product-collection { gap: 18px; padding: 30px 0 0; }.product-card { grid-template-columns: 1fr; min-height: 0; }.product-card-copy { min-height: 260px; padding: 27px; }.product-card-copy > p { margin-top: 33px; font-size: 20px; }.product-card-art { height: 265px; padding: 25px; }.product-card-story { width: 150px; border-width: 6px; border-radius: 10px; }.product-card-story-copy { padding: 10px; }.product-card-story-copy span:first-child { font-size: 26px; }.product-card-story-copy span:last-child { font-size: 17px; }.product-card-filmstrip { max-width: 330px; }
   .product-breadcrumb { padding-top: 24px; }.product-detail-hero { grid-template-columns: 1fr; gap: 48px; padding: 60px 0 75px; }.product-detail-identity { margin-bottom: 45px; }.product-detail-copy h1 { font-size: clamp(51px, 11vw, 72px); }.product-detail-lead { font-size: 16px; }.product-detail-art { min-height: 360px; }.product-detail-poster { width: 200px; }.product-detail-poster span { font-size: 40px; }
   .product-demo-section, .product-features { padding: 73px 0; }.product-section-heading { margin-bottom: 28px; }.product-section-heading h2 { font-size: 42px; }.product-demo { padding: 10px; }.product-demo-window-body { grid-template-columns: 1fr; min-height: 390px; }.product-demo-sidebar { display: none; }.product-demo-stage, .restory-demo-panel, .filmcut-demo-panel { min-height: 390px; }.restory-demo-panel, .filmcut-demo-panel { padding: 20px; }.restory-chapter-grid { gap: 7px; }.restory-chapter { height: 235px; padding: 10px; }.restory-chapter strong { font-size: 15px; }.restory-result-grid { gap: 7px; }.restory-result-film { height: 220px; }.restory-result-page { height: 245px; padding: 10px; }.restory-result-page strong { font-size: 15px; }.filmcut-double-frame { height: 240px; }.filmcut-output-grid { gap: 9px; }.filmcut-output-grid img { height: 225px; }
-  .product-feature-grid { grid-template-columns: 1fr; gap: 26px; }.product-feature-grid h3 { margin-top: 20px; }.product-made-for { margin-top: 42px; }.product-next { align-items: start; flex-direction: column; }
+  .product-feature-grid { grid-template-columns: 1fr; gap: 26px; }.product-feature-grid h3 { margin-top: 20px; }.product-next { align-items: start; flex-direction: column; }
 }
 @media (max-width: 400px) {
   .product-demo-steps button { gap: 4px; padding: 0 8px; font-size: 11px; }.product-demo-steps button span { font-size: 13px; }.product-demo-window-bar { padding: 0 10px; }.restory-chapter { height: 220px; }.restory-chapter strong { font-size: 13px; }.filmcut-demo-small { flex-direction: column; }
